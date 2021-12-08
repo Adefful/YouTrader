@@ -70,8 +70,8 @@ class PortfolioViewModel @Inject constructor(
             val priceUsd =  (currenciesMap[oldCurrency.id]?.priceUsd ?: 0.0)
             val newPrice = priceUsd * oldCurrency.amount
             val item = PortfolioCurrencyInfo(oldCurrency.id,oldCurrency.amount,newPrice)
-            val change = roundTo(calcProfit(item.amount,newPrice,oldCurrency.price),SIMPLE_PRECISION) + " (" +
-                    roundTo(asPercent(calcProfitPercentage(item.amount,newPrice,oldCurrency.price)),
+            val change = roundTo(calcProfit(item.amount,priceUsd,oldCurrency.price),SIMPLE_PRECISION) + " (" +
+                    roundTo(asPercent(calcProfitPercentage(item.amount,priceUsd,oldCurrency.price)),
                         PERCENTAGE_PRECISION) + "%)"
             return PortfolioItem(item,change)
     }
